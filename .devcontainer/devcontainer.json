@@ -1,8 +1,8 @@
 {
-  "name": "ghtun",
+  "name": "ghtun-3xui",
   "build": {
-    "dockerfile": "./Dockerfile",
-    "context": "."
+    "dockerfile": "../Dockerfile",
+    "context": ".."
   },
   "features": {
     "ghcr.io/devcontainers/features/common-utils:2": {
@@ -12,15 +12,23 @@
       "version": "latest"
     }
   },
-  "postAttachCommand": "bash -lc '/app/startup.sh'",
+  "postAttachCommand": "bash -lc 'echo Codespace attached. If 3x-ui is not running, run: /app/startup.sh'",
   "portsAttributes": {
+    "2053": {
+      "label": "3x-ui panel",
+      "protocol": "http",
+      "onAutoForward": "openBrowser"
+    },
     "443": {
-      "label": "xray",
+      "label": "xray-vless-xhttp",
       "protocol": "http",
       "onAutoForward": "silent"
     }
   },
-  "forwardPorts": [443],
+  "forwardPorts": [
+    2053,
+    443
+  ],
   "hostRequirements": {
     "cpus": 2
   }
