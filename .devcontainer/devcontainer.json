@@ -12,7 +12,8 @@
       "version": "latest"
     }
   },
-  "postAttachCommand": "bash -lc 'echo Codespace attached. If 3x-ui is not running, run: /app/startup.sh'",
+  "postStartCommand": "bash -lc '/app/auto-start-3xui.sh > /tmp/3x-ui-autostart.log 2>&1 || true'",
+  "postAttachCommand": "bash -lc 'echo Panel: https://${CODESPACE_NAME}-2053.app.github.dev/panel/ && echo Logs: /tmp/3x-ui.log && tail -n 40 /tmp/3x-ui-autostart.log 2>/dev/null || true'",
   "portsAttributes": {
     "2053": {
       "label": "3x-ui panel",
